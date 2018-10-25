@@ -1,0 +1,243 @@
+
+    .as_lightbox_wrapperemoji{
+    width:50%;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:100;
+    display:none;
+}
+
+#lbcloseemoji{
+    cursor:pointer;
+}
+
+/*========================= Responsive Query for emoji==========================*/
+
+@media(max-width: 576px){
+
+    /*======== Light Box =====*/
+    .as_lightbox_containeremoji {
+    z-index:101;
+    position:absolute;
+    background:#FFF;
+    /*left:28%;*/
+    top:10%;
+    width:95%;
+    padding:1px;
+    border-radius:5px;
+    display:none;
+    margin:10px;
+    box-shadow:0 0 10px black;}
+
+    /*====== Button =========*/
+    .as_lightbox_containeremoji .emgbtn {
+        padding:5px;
+        color:#ffffff;
+        background:#217faf;
+        font-weight: 600;
+        border-radius:5px;
+    }
+        .as_lightbox_containeremoji .emgbtn:hover {
+            background:#1A658C;
+            color:#ffffff;
+        }
+
+        .as_lightbox_containeremoji .emgbtn:active {
+            background:#1A658C;
+            color:#ffffff;
+        }
+
+
+    /*===== Close Button ====*/
+    .as_lightbox_closeemoji{
+    position:absolute;
+    right:2px;
+    z-index:999;
+    height:32px;
+    width:32px;
+    top:5px;
+    right:5px;
+    cursor:pointer;}
+
+
+    /*====== Emoji Button ====*/
+    .emojibtn {
+        width:50px !important;
+        height:50px !important;
+        background-size: 100%;
+        border:1px solid silver;
+        border-radius: 5px;
+        margin:1px;
+    }
+}
+
+@media(min-width: 576px){
+    .as_lightbox_containeremoji{
+    z-index:101;
+    position:absolute;
+    background:#FFF;
+    /*left:28%;*/
+    top:1%;
+    padding:1px;
+    border-radius:5px;
+    display:none;
+    margin:13px;}
+}
+
+@media(min-width: 768px){
+    /*======== Light Box =====*/
+    .as_lightbox_containeremoji {
+    z-index:101;
+    position:absolute;
+    background:#FFF;
+    left:23%;
+    top:1%;
+    width:30%;
+    padding:1px;
+    border-radius:5px;
+    display:none;
+    margin:;
+    box-shadow:0 0 10px black;}
+
+    /*====== Button =========*/
+    .as_lightbox_containeremoji .emgbtn {
+        padding:5px;
+        color:#ffffff;
+        background:#217faf;
+        font-weight: 600;
+        border-radius:5px;
+    }
+        .as_lightbox_containeremoji .emgbtn:hover {
+            background:#1A658C;
+            color:#ffffff;
+        }
+
+
+    /*===== Close Button ====*/
+    .as_lightbox_closeemoji{
+    position:absolute;
+    right:2px;
+    z-index:999;
+    height:32px;
+    width:32px;
+    top:5px;
+    right:5px;
+    cursor:pointer;}
+
+    /*====== Emoji Button ====*/
+    .emojibtn {
+        width:80px !important;
+        height:80px !important;
+        background-size: 100%;
+        border:1px solid silver;
+        border-radius: 5px;
+        margin:1px;}
+}
+
+.wrapemoji{
+        width:auto;
+        margin: auto;
+        padding: 0px;
+        background: white;
+        border: 0px solid #DBDBDB;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        text-align: center;
+        overflow: auto;
+}
+img#uploadPreviewemoji{
+        border: 0;
+        border-radius: 3px;
+        -moz-box-shadow: 0px 2px 7px 0px rgba(0, 0, 0, .27);
+        -webkit-box-shadow: 0px 2px 7px 0px rgba(0, 0, 0, .27);
+        box-shadow: 0px 2px 7px 0px rgba(0, 0, 0, .27);
+        margin-bottom:30px;
+        /*overflow: hidden;*/
+}
+/*input[type="submit"]{
+        border-radius: 10px;
+        background-color: #61B3DE;
+        border: 0;
+        color: white;
+        font-weight: bold;
+        font-style: italic;
+        padding: 6px 15px 5px;
+        cursor: pointer;
+}*/
+.stckrimg{
+    overflow-y: scroll;
+    height: auto;
+}
+.stckrimg img{
+    height: 50px;
+    
+}
+
+.as_lightbox_wrapper{
+    width:50%;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:100;
+    display:none;
+    
+}
+.as_lightbox_close{
+    position:absolute;
+    right:2px;
+    z-index:999;
+    height:32px;
+    width:32px;
+    top:25px;
+    right:22px;
+    cursor:pointer;
+   
+}
+#lbclose{
+    cursor:pointer;
+}
+.as_lightbox_container{
+    z-index:101;
+    position:fixed;
+    background:#FFF;
+    left:28%;
+    top:38%;
+    padding:1px;
+    border-radius:5px;
+    display:none;
+   // border:2px solid red;
+   // width:50px;
+}
+.wrap{
+        width:auto;
+        margin: 10px auto;
+        padding: 10px 15px;
+        background: white;
+        border: 2px solid #DBDBDB;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        text-align: center;
+        overflow: auto;
+}
+img#uploadPreview{
+        border: 0;
+        border-radius: 3px;
+        -webkit-box-shadow: 0px 2px 7px 0px rgba(0, 0, 0, .27);
+        box-shadow: 0px 2px 7px 0px rgba(0, 0, 0, .27);
+        margin-bottom: 30px;
+        overflow: hidden;
+}
+/*input[type="submit"]{
+        border-radius: 10px;
+        background-color: #61B3DE;
+        border: 0;
+        color: white;
+        font-weight: bold;
+        font-style: italic;
+        padding: 6px 15px 5px;
+        cursor: pointer;
+        
+}*/

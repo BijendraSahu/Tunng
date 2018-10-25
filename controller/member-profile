@@ -1,0 +1,506 @@
+<?php
+session_start();
+if(!isset($_SESSION['username']) && $_SESSION['username']=='')
+{
+    header("location:./login_view.php");
+    return FALSE;
+}
+include 'controller/connection.php';
+$username=$_SESSION['username'];
+$memberprofile=  mysql_query("select * from user_reg where user_name='$username'");
+$memberprofiledetl= mysql_fetch_array($memberprofile);
+?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+   
+    function load_as_lightbox(){
+        var DocumentHeight = $(document).height();
+        $('.as_lightbox_wrapper').css('height', DocumentHeight); // Set document height for As_Lightbox wrapper
+    }
+    function ShowLightBox(DivId){
+        $('.as_lightbox_wrapper').show(); // Show the wrapper
+        $('#'+DivId+'').show('slow'); // Show the Lightbox div, you can use another jQuery view functions such as fadeIn, fadeToggle for animations
+    }
+    function HideLightBox(DivId){
+        $('.as_lightbox_wrapper').hide('slow'); // Hide the As_Lightbox wrapper
+        $('#'+DivId+'').hide(); // Hide the div
+    }
+    $(document).ready(function(){
+        $('#as_lightbox_close').click(function(){
+            HideLightBox('Simple_Lightbox'); // call the As_Lightbox close function
+            return false;
+        });
+        $('#lbclose').click(function(){
+            HideLightBox('Simple_Lightbox'); // call the As_Lightbox close function
+            return false;
+        });
+        $('#changeImage').click(function(){
+            load_as_lightbox();
+            ShowLightBox('Simple_Lightbox'); // call the As_Lightbox show function
+            return false;
+        });
+    });
+        </script>
+        
+        <style type="text/css">  
+.as_lightbox_wrapper{
+    width:50%;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:100;
+    display:none;
+    
+}
+.as_lightbox_close{
+    position:absolute;
+    right:2px;
+    z-index:999;
+    height:32px;
+    width:32px;
+    top:25px;
+    right:22px;
+    cursor:pointer;
+   
+}
+#lbclose{
+    cursor:pointer;
+}
+.as_lightbox_container{
+    z-index:101;
+    position:fixed;
+    background:#FFF;
+    left:28%;
+    top:38%;
+    padding:1px;
+    border-radius:5px;
+    display:none;
+   // border:2px solid red;
+   // width:50px;
+}
+.wrap{
+        width:auto;
+        margin: 10px auto;
+        padding: 10px 15px;
+        background: white;
+        border: 2px solid #DBDBDB;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        text-align: center;
+        overflow: auto;
+}
+img#uploadPreview{
+        border: 0;
+        border-radius: 3px;
+        -webkit-box-shadow: 0px 2px 7px 0px rgba(0, 0, 0, .27);
+        box-shadow: 0px 2px 7px 0px rgba(0, 0, 0, .27);
+        margin-bottom: 30px;
+        overflow: hidden;
+}
+input[type="submit"]{
+        border-radius: 10px;
+        background-color: #61B3DE;
+        border: 0;
+        color: white;
+        font-weight: bold;
+        font-style: italic;
+        padding: 6px 15px 5px;
+        cursor: pointer;
+        
+}
+</style>
+    <div class="as_lightbox_wrapper"></div>
+<div style="width:500px; background-color: #fff;" class="as_lightbox_container" id="Simple_Lightbox">
+     <div class="as_lightbox">
+		<div class="as_lightbox_close" id="as_lightbox_close">
+                    <img src="assets/img/close_flat_icon.png" alt="Close Lightbox" title="Close" />
+        </div>
+        <div class="as_clear"></div>
+         <center>
+		 <div class="wrap">
+	<!-- image uploading form -->
+        <form action="controller/edit-member-photo.php" method="POST" enctype="multipart/form-data">
+		<input id="uploadImage" type="file" accept="image/jpeg" name="image" />
+		<input type="submit" value="Upload">
+
+		<!-- hidden inputs -->
+		<input type="hidden" id="x" name="x" />
+		<input type="hidden" id="y" name="y" />
+		<input type="hidden" id="w" name="w" />
+		<input type="hidden" id="h" name="h" />
+	</form>
+	
+</div><!--wrap-->
+</center>
+ </div>
+ </div>
+	
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Tunng</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="assets/css/demo.css" rel="stylesheet" />
+
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+
+</head>
+<body>
+<?php
+
+//  include('session.php');
+  ?>
+<div class="wrapper">
+    <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
+
+    <!--
+
+        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+        Tip 2: you can also add an image using data-image tag
+
+    -->
+
+        <div class="sidebar-wrapper">
+             <div class="col-md-12">
+                     
+             <span><strong style="font-family:Century Gothic;font-size:55px;"><b style="color:#4286F1">T</b><b style="color:#FF2A2C">u</b><b style="color:#EBBE1D">n</b><b style="color:#4286F3">n</b><b style="color:#31A854">g</b></strong></span>               
+           
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+
+            <ul class="nav">
+                <li>
+                    <a href="dashboard.php">
+                        <i class="pe-7s-chat"></i>
+                        <p>Timeline</p>
+                    </a>
+                </li>                
+                  
+                
+                <li>
+                    <a href="join-club.php">
+                        <i class="pe-7s-user"></i>
+                        <p>Join club</p>
+                    </a>
+                </li>
+                 <li>
+                     <a href="list-of-joined-club.php">
+                        <i class="pe-7s-user"></i>
+                        <p>List of joined clubs</p>
+                    </a>
+                </li>
+                 <li>
+                    <a href="deactivate.php">
+                        <i class="pe-7s-news-paper"></i>
+                        <p>Deactivate</p>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed" style="background-color:#0573cb;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="#" style="color:yellow; font-family: cursive;">Tunng</a>
+                    <image src="assets/img/tree.png" width="60">
+                </div>
+                <div class="collapse navbar-collapse">
+                    
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                           
+                              <a href=""  style="color:#9BFF22;">
+                              Welcome Member!&nbsp; <?php echo $memberprofiledetl['user_name'];?>
+                            
+                            </a>
+                        </li>                        
+                        <li>
+                            <a href="index.php" style="color:#9BFF22;">
+                                Log out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="col-md-12">
+                        <div class="card card-user">
+                        <form name="form1" method="post" >
+                        <div class="image">
+                                <img src="assets/img/club.jpg" alt="..."/>
+                        </div>                            
+                        <div class="content" >
+                        <?php
+//                   $dsn="mysql:dbname=cl21-tunng"; //the database we need to connect
+//$username="cl21-tunng"; 
+//$password="7up7up7up";
+//                    try //applying try catch block. incase if the connection failed we could handle the error
+//                    {
+//                        //$p1 =new Product();
+                    //$p1->getobject();
+        
+//                    $conn=new PDO($dsn,$username,$password); //creating PDO object and passing 3 values
+//                   $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION); //set attributes to handle if any error occurs
+//                    //echo 'OK'; //if connected then print ok
+//                    $myquery="SELECT * FROM files where userid='$login_session'" ;  //the query plan to execute
+//
+//                    $result=$conn->query($myquery);                    
+//                                                                        foreach($result as $temp)                    { 
+//                         echo '
+//                              <div class="author">
+//                                     <a href="#">                                     
+//                                     <img class="avatar border-gray" src="'.$temp['pro_pic'].'">                                                                                                            </a>                                </div>' ;          
+//                                
+                              
+//                    }    
+//                                                       $conn=null;                          
+//                                              
+//                                }
+//                                catch (PDOException $e)
+//                               {
+//                                   echo 'Connection Failed';
+//                                        
+//                                }
+                                ?>
+                            <div class="author"> 
+                                <?php
+                             if($memberprofiledetl['member_photo']!="")
+                            {
+                             ?>
+                             <img class="avatar border-gray" id="changeImage"  src="assets/img/member_photo/<?php echo $memberprofiledetl['member_photo'];?>"> 
+                            <?php
+                              }
+                            else
+                             {
+                             ?>
+                             <img class="avatar border-gray" id="changeImage"  src="assets/img/camraicon.png" style="max-width:150px;">
+                            <?php
+                             }
+                            ?>
+                            </div>
+                                 <p class="description text-center"></p>
+                                <h4 class="title text-center">Welcome! <?php // echo $login_session; ?> <?php echo $memberprofiledetl['user_name'];?></h4>
+                                
+                            </div>
+                        </form>    
+                            <hr>
+                            <div class="text-center">
+                                <button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
+                                <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
+                                <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Edit Profile</h4>
+                                <center>
+                                <div>
+                                    <?php
+                                        if(isset($_SESSION['success_profile']) && $_SESSION['success_profile']!="")
+                                         {
+                                     ?>
+                                     <div class="alert alert-success">
+                                       <strong>Success!</strong>  Your information updated successfully.
+                                     </div>
+
+                                    <?php
+                                       unset($_SESSION['success_profile']);
+                                        }
+                                     ?>
+                                     </div>
+                                   </center>
+                            </div>
+                            <div class="content">
+                                <form id="edit_member" name="edit_member" action="controller/edit-member-profile.php" method="POST">
+                                    <div class="row">
+                                        <div class="col-md-4 col-md-offset-3">
+                                            <div class="form-group">
+                                                <label>User Name</label>
+                                                <input type="text" name="uname" id="uname" class="form-control" value="<?php // echo htmlspecialchars($login_session); ?> <?php echo $memberprofiledetl['user_name']; ?>" readonly="true">
+                                            </div>
+                                        </div>                                        
+                                   </div>
+                                       <div class="col-md-4 col-md-offset-3">
+                                            <div class="form-group">
+                                                <label>Email id</label>
+                                                <input type="text" name="email" id="email" class="form-control" value="<?php // echo htmlspecialchars($login_session); ?> <?php echo $memberprofiledetl['email_id']; ?>" readonly="true">
+                                            </div>
+                                        </div>  
+                                         <div class="col-md-4 col-md-offset-3">
+                                            <div class="form-group">
+                                                <label>Country</label>
+                                                <input type="text" maxlength="13" class="form-control" placeholder="country" name="country" id="country" value="<?php echo $memberprofiledetl['member_country'];?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-md-offset-3">
+                                            <div class="form-group">
+                                                <label>City</label>
+                                                <input type="text" maxlength="13" class="form-control" name="city" id="city" placeholder="city" value="<?php echo $memberprofiledetl['member_city'];?>">
+                                            </div>
+                                        </div>
+                                        
+                                    <div class="col-md-4 col-md-offset-3">
+                                            <div class="form-group">
+                                                <label>Address</label>
+                                                <input type="text" class="form-control" placeholder="Address" name="address" id="address" value="<?php echo $memberprofiledetl['address'];?>">
+                                            </div>
+                                        </div>
+                                    <div class="col-md-4 col-md-offset-3">
+                                            <div class="form-group">
+                                                <label>Contact no.</label>
+                                                <input type="text" maxlength="10" class="form-control" placeholder="Contact no." name="mobile" id="mobile" value="<?php echo $memberprofiledetl['contact_no'];?>">
+                                            </div>
+                                        </div>
+                                   
+                                        <div class="col-md-4 col-md-offset-2">                      
+                                            <button type="submit" name="update_memberprofile" id="update_memberprofile" value="submit" class="btn btn-info btn-fill pull-right">Edit Profile</button>       
+                                        </div>
+<!--                                        <div class="col-md-3"> 
+                                            <label>Upload Profile Image</label>  
+                                            <input name="files[]" type="file" multiple />  
+                                        </div>-->
+                                    </div>
+                                <div class="row">
+                                       
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                                <!-- <div class="author">
+                                     <a href="#">
+                                    <img class="avatar border-gray" src="assets/img/faces/face-3.jpg" alt="..."/>
+
+                                      <h4 class="title">Mike Andrew<br />
+                                         <small>michael24</small>
+                                      </h4>
+                                    </a>
+                                </div> -->
+                                
+                            </div>
+                            <hr>
+                            <div class="text-center">
+                                <button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
+                                <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
+                                <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>   
+
+    </div>
+</div>
+
+
+</body>
+    </html>
+    <!--   Core JS Files   -->
+    <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <!--  Checkbox, Radio & Switch Plugins -->
+    <script src="assets/js/bootstrap-checkbox-radio-switch.js"></script>
+
+    <!--  Charts Plugin -->
+    <script src="assets/js/chartist.min.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="assets/js/bootstrap-notify.js"></script>
+
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+    <script src="assets/js/light-bootstrap-dashboard.js"></script>
+
+    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+    <script src="assets/js/demo.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            demo.initChartist();
+
+            $.notify({
+                icon: 'pe-7s-gift',
+                message: "Welcome to <b>TUNNG</b> - Your Reviews Are Our Motivation!"
+
+            },{
+                type: 'info',
+                timer: 4000
+            });
+
+        });
+
+
+        $(document).ready(function(){  
+      $('#uploadForm').on('submit', function(e){  
+           e.preventDefault();  
+           $.ajax({  
+                url: "editprofile.php",  
+                type: "POST",  
+                data: new FormData(this),  
+                contentType: false,  
+                processData:false,  
+                success: function(data)  
+                {  
+                     $("#gallery").html(data); 
+                     alert('updated');
+                     
+                      
+                }  
+           });  
+      });  
+ });
+    </script>
+
+

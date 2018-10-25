@@ -1,0 +1,23 @@
+
+.tunng-cotegory-panel {
+	margin:auto 10px;
+	padding:0px;
+}
+.panel-def-mar {
+	outline:1px solid #dddddd;
+	margin:auto 10px 5px 10px;
+}
+
+@media(max-width: 576px){
+	.casli {
+	width:100%;
+	height:200px !important;}
+	
+}
+
+@media(min-width: 576px){
+	.casli {
+	width:100%;
+	height:410px !important;}
+	
+}

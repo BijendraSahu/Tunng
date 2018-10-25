@@ -1,0 +1,12 @@
+@media(max-width:576px){
+	.panel-width {
+		width:100% !important;
+	} 
+}
+
+@media(min-width: 1200px){
+	.panel-width {
+		width:70% !important;
+		margin: 0 auto 10px auto !important;
+	}
+}

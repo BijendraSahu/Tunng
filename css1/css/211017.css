@@ -1,0 +1,122 @@
+            .bannertxt_area
+            {
+                left:5%;
+            }
+            .body_section
+            {
+                overflow: hidden;
+            }
+            .inner-bg
+            {
+                padding: 25px;
+            }
+            .search_box
+            {
+                color: white;
+                border: 2px solid #FFFFFF;
+                width: 350px;
+                background: transparent;
+            }
+            @media screen and (min-width: 320px) and (max-width: 479px)
+            {
+                .bannertxt_fordefault
+                {
+                    width: 100%;
+                    right: 0%;
+                }
+            }
+            @media screen and (min-width: 320px) and (max-width: 479px)
+            {
+                .left_spaces
+                {
+                    margin-left: -13%!important;
+                }
+                .search_box
+                {
+                    width: 239px!important;
+                }
+            }
+            @media screen and (min-width: 480px) and (max-width: 767px)
+            {
+                .bannertxt_fordefault
+                {
+                    width: 92%!important;
+                    right: 5%!important;
+                }
+                .left_spaces
+                {
+                    margin-left: 2%!important;
+                }
+                .search_box
+                {
+                    width: 299px!important;
+                }
+            }
+            @media screen and (min-width: 768px) and (max-width: 1024px)
+            {
+                .bannertxt_fordefault
+                {
+                    top: 10%;
+                    width: 64%;
+                    right: 20%;
+                }
+                .left_spaces 
+                {
+                    margin-left: -63%!important;
+                }
+            }
+            @media screen and (min-width: 1024px) and (max-width: 1300px)
+            {
+                .bannertxt_fordefault
+                {
+                    width: 52%;
+                    right: 26%;
+                }
+            }
+
+            
+             /*Placeholder Colors*/
+                                            ::-webkit-input-placeholder { /* Chrome */
+                                                color:#D74C24;
+                                            }
+                                            :-ms-input-placeholder { /* IE 10+ */
+                                                color: #D74C24;
+                                            }
+                                            ::-moz-placeholder { /* Firefox 19+ */
+                                                color: #D74C24;
+                                                opacity: 1;
+                                            }
+                                            :-moz-placeholder { /* Firefox 4 - 18 */
+                                                color: #D74C24;
+                                                opacity: 1;
+                                            }
+                                            .left_spaces{
+                                                margin-left: -43%;
+                                            }
+
+             /*form frdesigning*/
+             .nav-tabs {border:1px solid transparent;}
+            .nav-tabs > li > a { padding:0px !important;color:#4286F1;font-family: calibri;border-bottom:1px solid silver;}
+            .nav-tabs > li > a:hover { padding:0px !important;background:rgba(0,0,0,0.5) !important; }
+            .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a{
+                padding:0px !important;
+            }
+            .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+                padding:0px !important;
+                background:rgba(0,0,0,0.0) !important;
+                color:#4286F1;
+            }
+            input[type="text"],input[type="password"],input[type="button"]{height:40px !important;background:transparent;border:1px solid silver;font-weight: 600;padding-left: 40px}
+            input[type="text"]:focus,input[type="password"]:focus{height:40px !important;background:rgba(255, 255, 255,0.5);border:1px solid silver;color:#D74C24;}
+            input[type="text"]::placeholder,input[type="password"]::placeholder{color:#D74C24;}
+            input[type="button"] {color:#D74C24;font-family: calibri;font-size: 20px}
+
+            .btn-default {height:40px !important;color:#D74C24 !important;background:transparent;border:1px groove silver;color:#4286F1;font-size:20px;font-family: calibri}
+            .btn-default:hover {background:transparent}
+
+            .tutitle {font-family:calibri;color:white;}
+            .link {color:yellow;font-family: calibri}
+            .link:hover {color:yellow;}
+
+            .logincon {position:absolute;left:20px;}
+            input[type="password"].addinput {width:50px;padding:5px 5px 5px 17px;font-size:25px;}

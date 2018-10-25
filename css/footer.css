@@ -1,0 +1,31 @@
+footer{background-color:#F2F2F2;margin:0 -20px 0 -20px;}
+footer .tb-padding{padding:5px 0px;}
+footer .logo{padding:0px 0px 20px;
+border-bottom:1px solid #c2c2c2;}
+footer .icon{
+font-size:30px; 
+text-align:left;
+}
+
+
+footer a{
+	color:#800080;
+}
+
+footer ul{list-style:none; margin:0px; padding:0px;}
+
+footer ul li{padding:10px 0px; border-bottom:0px solid #c2c2c2;}
+
+footer ul li:before {
+		 content: "\00BB";
+	     }
+footer a:hover{text-decoration:none;
+				color:#d100d1;}
+
+footer .top-border{border-top:1px solid #c2c2c2;}
+
+footer .top-border ul li:before{content: " ";}
+
+footer .top-border ul li{border:none; display:inline-block;}
+
+footer .top-border ul li a{padding:0px 10px;}
